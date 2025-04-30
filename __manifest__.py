@@ -15,8 +15,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/myoperator_call_log_views.xml',
-        'views/res_config_settings_views.xml',
-        'views/menu_views.xml',
     ],
     'demo': [],
     'installable': True,
