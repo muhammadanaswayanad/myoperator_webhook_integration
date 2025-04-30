@@ -4,7 +4,7 @@
     <menuitem id="menu_myoperator_root"
               name="MyOperator"
               sequence="10"
-              web_icon="myoperator_webhook_integration,static/description/icon.png"/>
+              web_icon="myoperator_webhook_integration,static/description/icon-hi.png"/>
     
     <!-- Call Logs Menu -->
     <menuitem id="menu_myoperator_call_logs"

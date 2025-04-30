@@ -20,4 +20,5 @@
     'installable': True,
     'auto_install': False,
     'license': 'LGPL-3',
+    'icon': '/myoperator_webhook_integration/static/description/icon-hi.png',
 }
