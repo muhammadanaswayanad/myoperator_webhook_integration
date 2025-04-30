@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Call Logs Menu -->
+    <menuitem id="menu_myoperator_call_logs" 
+              name="Call Logs" 
+              parent="crm.crm_menu_report" 
+              action="action_myoperator_call_log" 
+              sequence="10"/>
+</odoo>
