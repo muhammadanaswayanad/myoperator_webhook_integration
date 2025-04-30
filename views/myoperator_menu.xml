@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_myoperator_root"
+              name="MyOperator"
+              sequence="10"
+              web_icon="myoperator_webhook_integration,static/description/icon.png"/>
+    
+    <!-- Call Logs Menu -->
+    <menuitem id="menu_myoperator_call_logs"
+              name="Call Logs"
+              parent="menu_myoperator_root"
+              action="action_myoperator_call_logs"
+              sequence="10"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="menu_myoperator_config"
+              name="Configuration"
+              parent="menu_myoperator_root"
+              sequence="100"/>
+    
+    <menuitem id="menu_myoperator_settings"
+              name="Settings"
+              parent="menu_myoperator_config"
+              action="action_myoperator_settings"
+              sequence="10"/>
+</odoo>

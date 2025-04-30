@@ -82,4 +82,62 @@
             </p>
         </field>
     </record>
+
+    <!-- Call Log Form View -->
+    <record id="view_myoperator_call_log_form" model="ir.ui.view">
+        <field name="name">myoperator.call.log.form</field>
+        <field name="model">myoperator.call.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="phone_number"/>
+                        <field name="call_status"/>
+                        <field name="call_duration"/>
+                        <field name="call_time"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Call Log Tree View -->
+    <record id="view_myoperator_call_log_tree" model="ir.ui.view">
+        <field name="name">myoperator.call.log.tree</field>
+        <field name="model">myoperator.call.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone_number"/>
+                <field name="call_status"/>
+                <field name="call_duration"/>
+                <field name="call_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Call Log Action -->
+    <record id="action_myoperator_call_logs" model="ir.actions.act_window">
+        <field name="name">Call Logs</field>
+        <field name="res_model">myoperator.call.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No call logs found.
+            </p>
+            <p>
+                Call logs from MyOperator will appear here after calls are processed.
+            </p>
+        </field>
+    </record>
+
+    <!-- Settings Action -->
+    <record id="action_myoperator_settings" model="ir.actions.act_window">
+        <field name="name">MyOperator Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'crm'}</field>
+    </record>
 </odoo>
