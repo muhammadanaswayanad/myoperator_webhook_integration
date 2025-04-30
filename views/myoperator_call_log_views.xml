@@ -5,11 +5,11 @@
         <field name="name">myoperator.call.log.tree</field>
         <field name="model">myoperator.call.log</field>
         <field name="arch" type="xml">
-            <tree string="Call Logs" decoration-danger="call_status in ['missed', 'not_answered']">
-                <field name="caller_number"/>
-                <field name="receiver_number"/>
-                <field name="call_start_time"/>
-                <field name="call_duration" widget="float_time"/>
+            <tree string="Call Logs" decoration-danger="call_status == 'missed'">
+                <field name="name"/>
+                <field name="phone_number"/>
+                <field name="call_time"/>
+                <field name="call_duration"/>
                 <field name="call_status"/>
                 <field name="lead_id"/>
                 <field name="partner_id"/>
@@ -26,20 +26,19 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="caller_number"/>
-                            <field name="receiver_number"/>
+                            <field name="name"/>
+                            <field name="phone_number"/>
                             <field name="lead_id"/>
                             <field name="partner_id"/>
                         </group>
                         <group>
-                            <field name="call_start_time"/>
-                            <field name="call_end_time"/>
-                            <field name="call_duration" widget="float_time"/>
+                            <field name="call_time"/>
+                            <field name="call_duration"/>
                             <field name="call_status"/>
                         </group>
                     </group>
                     <group>
-                        <field name="call_recording_url" widget="url"/>
+                        <field name="call_notes"/>
                     </group>
                 </sheet>
             </form>
@@ -52,76 +51,30 @@
         <field name="model">myoperator.call.log</field>
         <field name="arch" type="xml">
             <search string="Search Call Logs">
-                <field name="caller_number"/>
-                <field name="receiver_number"/>
+                <field name="name"/>
+                <field name="phone_number"/>
                 <field name="call_status"/>
                 <field name="lead_id"/>
                 <field name="partner_id"/>
-                <filter string="Today" name="today" domain="[('call_start_time', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
-                <filter string="This Week" name="this_week" domain="[('call_start_time', '&gt;=', (context_today() + relativedelta(weeks=-1, days=1, weekday=0)).strftime('%Y-%m-%d'))]"/>
-                <filter string="This Month" name="this_month" domain="[('call_start_time', '&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Today" name="today" domain="[('call_time', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="This Week" name="this_week" domain="[('call_time', '&gt;=', (context_today() + relativedelta(weeks=-1, days=1, weekday=0)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Month" name="this_month" domain="[('call_time', '&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Group By">
                     <filter string="Status" name="status" context="{'group_by':'call_status'}"/>
                     <filter string="Lead" name="lead" context="{'group_by':'lead_id'}"/>
                     <filter string="Partner" name="partner" context="{'group_by':'partner_id'}"/>
-                    <filter string="Date" name="call_date" context="{'group_by':'call_start_time:day'}"/>
+                    <filter string="Date" name="call_date" context="{'group_by':'call_time:day'}"/>
                 </group>
             </search>
         </field>
     </record>
 
     <!-- Action -->
-    <record id="action_myoperator_call_log" model="ir.actions.act_window">
-        <field name="name">MyOperator Call Logs</field>
-        <field name="res_model">myoperator.call.log</field>
-        <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="myoperator_call_log_view_search"/>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                No call logs found. Calls will appear here when MyOperator sends webhook data.
-            </p>
-        </field>
-    </record>
-
-    <!-- Call Log Form View -->
-    <record id="view_myoperator_call_log_form" model="ir.ui.view">
-        <field name="name">myoperator.call.log.form</field>
-        <field name="model">myoperator.call.log</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="phone_number"/>
-                        <field name="call_status"/>
-                        <field name="call_duration"/>
-                        <field name="call_time"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Call Log Tree View -->
-    <record id="view_myoperator_call_log_tree" model="ir.ui.view">
-        <field name="name">myoperator.call.log.tree</field>
-        <field name="model">myoperator.call.log</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="phone_number"/>
-                <field name="call_status"/>
-                <field name="call_duration"/>
-                <field name="call_time"/>
-            </tree>
-        </field>
-    </record>
-
-    <!-- Call Log Action -->
     <record id="action_myoperator_call_logs" model="ir.actions.act_window">
         <field name="name">Call Logs</field>
         <field name="res_model">myoperator.call.log</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="myoperator_call_log_view_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No call logs found.

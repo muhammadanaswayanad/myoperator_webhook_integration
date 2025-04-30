@@ -17,6 +17,6 @@ class MyOperatorCallLog(models.Model):
     call_time = fields.Datetime(string="Call Time", default=fields.Datetime.now)
     call_notes = fields.Text(string="Notes")
     
-    # Optional: Link to CRM or contacts
+    # Links to CRM and contacts
     partner_id = fields.Many2one('res.partner', string="Contact")
     lead_id = fields.Many2one('crm.lead', string="Lead/Opportunity")
