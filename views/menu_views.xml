@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Make sure this action reference is correct -->
+    <!-- Call Logs Menu - Make sure it's pointing to the correct action -->
     <menuitem id="menu_myoperator_call_logs" 
               name="Call Logs" 
               parent="crm.crm_menu_report" 

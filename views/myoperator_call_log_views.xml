@@ -85,5 +85,5 @@
         </field>
     </record>
 
-    <!-- DELETE any action_myoperator_settings record if it exists here -->
+    <!-- Remove any settings action defined here -->
 </odoo>
