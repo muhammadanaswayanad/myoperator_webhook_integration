@@ -36,7 +36,7 @@
         </field>
     </record>
 
-    <!-- Update the settings action -->
+    <!-- Replace the settings action with one that specifically opens MyOperator section -->
     <record id="action_myoperator_settings" model="ir.actions.act_window">
         <field name="name">MyOperator Settings</field>
         <field name="res_model">res.config.settings</field>
