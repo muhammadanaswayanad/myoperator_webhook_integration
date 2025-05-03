@@ -19,6 +19,7 @@
               parent="menu_myoperator_root"
               sequence="100"/>
     
+    <!-- Settings menu with proper action -->
     <menuitem id="menu_myoperator_settings"
               name="Settings"
               parent="menu_myoperator_config"

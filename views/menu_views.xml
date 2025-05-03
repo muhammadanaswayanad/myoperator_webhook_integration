@@ -6,4 +6,11 @@
               parent="crm.crm_menu_report" 
               action="action_myoperator_call_logs" 
               sequence="10"/>
+    <!-- This menu item might be redundant with the one in myoperator_menu.xml -->
+    <!-- Make sure this doesn't conflict with the main menu -->
+    <menuitem id="menu_myoperator_call_logs_crm" 
+              name="Call Logs" 
+              parent="crm.crm_menu_report" 
+              action="action_myoperator_call_logs" 
+              sequence="10"/>
 </odoo>

@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Remove any view that would override the standard settings form -->
-    <!-- Only keep a component that adds MyOperator settings to the standard settings page -->
+    <!-- Inherit the standard settings form properly -->
     <record id="res_config_settings_view_form_myoperator" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.myoperator</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority">20</field>
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div class="app_settings_block" data-string="MyOperator" data-key="myoperator_webhook_integration">
                     <h2>MyOperator Integration</h2>
                     <div class="row mt16 o_settings_container" id="myoperator_settings">
-                        <!-- ...existing code... -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <label for="myoperator_webhook_url" string="Webhook URL"/>
+                                        <div class="text-muted">
+                                            Configure this URL in your MyOperator Dashboard for After-Call webhooks
+                                        </div>
+                                        <field name="myoperator_webhook_url" readonly="1" class="mt-2"/>
+                                    </div>
+                                    <div class="mt16">
+                                        <label for="myoperator_webhook_secret" string="Webhook Secret"/>
+                                        <div class="text-muted">
+                                            If MyOperator provides a secret token for webhook verification, enter it here
+                                        </div>
+                                        <field name="myoperator_webhook_secret" class="mt-2"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>
         </field>
     </record>
 
-    <!-- Define a specific action for MyOperator Settings that doesn't override general settings -->
+    <!-- Define action for MyOperator settings without overriding standard settings -->
     <record id="action_myoperator_settings" model="ir.actions.act_window">
         <field name="name">MyOperator Settings</field>
         <field name="res_model">res.config.settings</field>
