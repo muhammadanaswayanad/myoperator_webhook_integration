@@ -1,47 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Inherit the standard settings form instead of creating a custom one -->
-    <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.myoperator</field>
+    <!-- Create a dedicated settings form for MyOperator, not inheriting base settings -->
+    <record id="view_myoperator_config_settings_form" model="ir.ui.view">
+        <field name="name">myoperator.config.settings.form</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority">10</field>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="MyOperator" data-key="myoperator_webhook_integration">
-                    <h2>MyOperator Integration</h2>
-                    <div class="row mt16 o_settings_container" id="myoperator_settings">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <div class="content-group">
-                                    <div class="mt16">
-                                        <label for="myoperator_webhook_url" string="Webhook URL"/>
-                                        <div class="text-muted">
-                                            Configure this URL in your MyOperator Dashboard for After-Call webhooks
-                                        </div>
-                                        <field name="myoperator_webhook_url" readonly="1" class="mt-2"/>
-                                    </div>
-                                    <div class="mt16">
-                                        <label for="myoperator_webhook_secret" string="Webhook Secret"/>
-                                        <div class="text-muted">
-                                            If MyOperator provides a secret token for webhook verification, enter it here
-                                        </div>
-                                        <field name="myoperator_webhook_secret" class="mt-2"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <form string="MyOperator Settings" class="oe_form_configuration">
+                <header>
+                    <button string="Save" type="object" name="execute" class="oe_highlight"/>
+                    <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>MyOperator Settings</h1>
                     </div>
-                </div>
-            </xpath>
+                    <group>
+                        <group>
+                            <field name="myoperator_webhook_url" readonly="1"/>
+                            <field name="myoperator_webhook_secret"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
-    <!-- Replace the settings action with one that specifically opens MyOperator section -->
+    <!-- Define a specific action for MyOperator Settings -->
     <record id="action_myoperator_settings" model="ir.actions.act_window">
         <field name="name">MyOperator Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
-        <field name="context">{'module': 'myoperator_webhook_integration'}</field>
+        <field name="view_id" ref="view_myoperator_config_settings_form"/>
     </record>
 </odoo>

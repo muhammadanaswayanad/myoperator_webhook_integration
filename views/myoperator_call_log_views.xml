@@ -84,4 +84,6 @@
             </p>
         </field>
     </record>
+
+    <!-- DELETE any action_myoperator_settings record if it exists here -->
 </odoo>
